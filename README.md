@@ -84,6 +84,30 @@ python novel.py
 ```
 Ensure that the CIF file directory is correctly configured.
 
+---
+### 4. `combined.py`
+#### Purpose
+This script integrates the functionalities of `results_param.py`, `results.py`, and `novel.py` into a single streamlined execution. It processes multiple CIF files, extracts their chemical compositions, queries the **Materials Project** database, and determines whether each structure is novel or already known.
+
+#### Key Features
+- Reads **CIF files** from multiple directories.
+- Utilizes **pymatgen** to parse CIF files and extract chemical formulas.
+- Queries **Materials Project API** to compare structures.
+- Uses **StructureMatcher** to assess structural similarity with tolerance settings:
+  - **Lattice tolerance**: `ltol=0.2`
+  - **Site tolerance**: `stol=0.3`
+  - **Angle tolerance**: `5.0` degrees
+- Classifies structures as **novel, existing, or unknown**.
+- Computes and displays the **novelty ratio**.
+- Supports **parallel processing** for efficient CIF file reading and matching.
+
+#### How to Use
+Run the script in a Python environment:
+```bash
+python combined.py
+```
+Ensure that all necessary CIF folder paths are correctly set before execution.
+
 ## Dependencies
 Make sure you have the required Python packages installed:
 ```bash
@@ -101,7 +125,7 @@ Depending on the script executed, the expected results include:
 - The **number of CIF files processed**.
 - Extracted **chemical formulas**.
 - **Match results** for each structure against the Materials Project database.
-- **Novelty assessment and ratio** calculations (for `novel.py`).
+- **Novelty assessment and ratio** calculations (for `novel.py` and `combined.py`).
 
 ## Notes
 - Ensure the **CIF folder path** is correctly set in each script before execution.
